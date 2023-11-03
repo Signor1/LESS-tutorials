@@ -1,0 +1,115 @@
+@import "./_variables";
+
+
+h1 {
+    .TextDesign();
+}
+
+.cta {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin-top: 3rem;
+
+    @media @mobile {
+        flex-direction: column;
+    }
+
+    button:first-child {
+        .ButtonDesign(@bgColor, @color);
+
+        @media @mobile {
+            .ButtonDesign(#111, #ccc);
+        }
+    }
+
+    button:last-child {
+        .ButtonDesign(navy, white);
+    }
+}
+
+section {
+    .cta();
+}
+
+//Button mixin in less
+.ButtonDesign(@bg, @txtcolor) {
+    padding: 10px 20px;
+    outline: none;
+    border: none;
+    color: @txtcolor;
+    background-color: @bg;
+
+    &:hover {
+        color: @bg;
+        background-color: @txtcolor;
+    }
+}
+
+.TextDesign {
+    color: brown;
+    font-size: 2cm;
+    text-align: center;
+    font-family: sans-serif;
+}
+
+// Less namespaces and accessors 
+#bundle() {
+    .anchor {
+        text-decoration: none;
+        color: white;
+    }
+
+    .logo {
+        text-transform: uppercase;
+        font-weight: 800;
+    }
+}
+
+//mapping
+#colors() {
+    primary: blue;
+    secondary: grey;
+    warning: gold;
+    danger: red;
+    success: green;
+    info: teal;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+nav {
+    display: flex;
+    width: 100%;
+    height: 80px;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #colors[info];
+    padding-inline: 3rem;
+
+    a {
+        #bundle.anchor();
+    }
+
+    .logo {
+        #bundle.logo();
+    }
+
+    ul {
+        list-style: none;
+        display: flex;
+        gap: 2rem;
+    }
+
+    button {
+        background-color: #colors[warning];
+        color: #colors[primary];
+        padding: 10px 20px;
+        outline: none;
+        border: none;
+    }
+}
